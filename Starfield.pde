@@ -9,7 +9,22 @@ void draw()
 }
 class NormalParticle
 {
-	//your code here
+	double myX, myY, myAngle, mySpeed;
+  int myColor;
+  NormalParticle(){
+    myX = 100;
+    myY = 100;
+    myAngle = (Math.random()*2*Math.PI);
+    mySpeed = (Math.random()*10);
+  }
+  void move(){
+    myX = myX + Math.cos(myAngle) * mySpeed;
+    myY = myY + Math.sin(myAngle) * mySpeed;
+  }
+  void show(){
+    
+  }
+
 }
 interface Particle
 {
@@ -23,4 +38,3 @@ class JumboParticle //uses inheritance
 {
 	//your code here
 }
-
