@@ -1,4 +1,4 @@
-Particle[] particles = new Particle[100];
+Particle[] particles = new Particle[1000];
   
   //your code here
 void setup()
@@ -8,12 +8,14 @@ void setup()
   for(int i = 0; i < particles.length; i++){
     particles[i] = new NormalParticle();
   }
+  particles[0] = new JumboParticle();
 }
 void draw()
 {
+  background(0);
 	for(int i = 0; i < particles.length; i++){
-    particles[i].show();
     particles[i].move();
+    particles[i].show();
   }
 }
 class NormalParticle implements Particle
@@ -22,31 +24,41 @@ class NormalParticle implements Particle
   int myColor;
   
   NormalParticle(){
-    myX = 100;
-    myY = 100;
+    myX = 500;
+    myY = 500;
     myAngle = (Math.random()*2*Math.PI);
     mySpeed = (Math.random()*10);
     myColor = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
   }
+  
   public void move(){
     myX = myX + Math.cos(myAngle) * mySpeed;
     myY = myY + Math.sin(myAngle) * mySpeed;
   }
-  void show(){
-    fill(myColor);
-    ellipse(myX, myY, 30, 30);
+  
+  public void show(){
+    fill(250);
+    ellipse((float)myX, (float)myY, 3, 3);
   }
 
 }
 interface Particle
 {
 	public void move();
+  public void show();
 }
 class OddballParticle implements Particle
 {
-	//your code here
+	public void move(){
+  
+  }
+  public void show(){
+  
+  }
 }
-class JumboParticle implements Particle
+class JumboParticle extends NormalParticle implements Particle 
 {
-	//your code here
+   void show(){
+    ellipse((float)myX, (float)myY, 30, 30);
+  }
 }
